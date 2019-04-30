@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block title %}
+BOOKMARK list
+{% endblock %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col"></div>
+    <div class="col-12 col-xl-8 col-md-4">
+        <table class="table">
+            <thead class="thead-dark">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">사이트명</th>
+                <th scope="col">URL</th>
+                <th scope="col">수정</th>
+                <th scope="col">삭제</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for object in object_list %}
+            <tr>
+                <td>{{ object.id }}</td>
+                <td>
+                    <a href="{% url 'bookmark:detail' object.id %}">
+                        {{ object.site_name }}</a></td>
+                <td>
+                    <a href="{{ object.url }}">
+                    {{ object.url }}</a></td>
+                <td><a href="{% url 'bookmark:update' object.id %}">수정</a>
+                <td><a href="{% url 'bookmark:delete' object.id %}">삭제</a></td>
+            </tr>
+            {% endfor %}
+<!--            <tr>-->
+<!--                <th scope="row">2</th>-->
+<!--                <td>Jacob</td>-->
+<!--                <td>Thornton</td>-->
+<!--                <td>@fat</td>-->
+<!--            </tr>-->
+<!--            <tr>-->
+<!--                <th scope="row">3</th>-->
+<!--                <td>Larry</td>-->
+<!--                <td>the Bird</td>-->
+<!--                <td>@twitter</td>-->
+<!--            </tr>-->
+            </tbody>
+        </table>
+<!--        <a href="{% url 'bookmark:create' %}" class="btn btn-success">Add bookmark</a><br>-->
+<!--        {# bookmark 목록 출력하기 주석처리 #}-->
+<!--        {% for object in object_list %}-->
+<!--        {{ object.id }} <a href="{% url 'bookmark:detail' object.id %}">{{object.site_name }}</a> <a-->
+<!--            href="{{ object.url }}">{{ object.url }}</a> <br>-->
+<!--        {% endfor %}-->
+        </div>
+    <div class="col"></div>
+</div>
+    {% endblock %}
